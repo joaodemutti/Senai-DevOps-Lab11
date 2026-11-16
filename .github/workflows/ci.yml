@@ -25,7 +25,7 @@ jobs:
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
           source: "index.html,Dockerfile"
-          target: "~/app"
+          target: "~/Senai-DevOps-Lab11"
       - name: Deploy na EC2
         uses: appleboy/ssh-action@v1.0.3
         with:
@@ -33,7 +33,7 @@ jobs:
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            cd ~/app
+            cd ~/Senai-DevOps-Lab11
             sudo docker build -t onepage .
             sudo docker rm -f onepage || true
             sudo docker run -d --name onepage -p 80:80 onepage
